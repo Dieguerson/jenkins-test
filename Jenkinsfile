@@ -1,7 +1,9 @@
 pipeline {
-  agent any
-  tools {
-    nodejs 'node-11.0.0'
+  agent {
+      docker {
+          image 'node:lts-buster-slim'
+          args '-p 3000:3000'
+      }
   }
   environment {
     CI = 'true'
