@@ -3,6 +3,9 @@ pipeline {
   tools {
     nodejs 'node-11.0.0'
   }
+  environment {
+    CI = 'true'
+  }
 
   options {
     timeout(time: 2, unit: 'MINUTES')
@@ -11,12 +14,12 @@ pipeline {
   stages {
     stage('Install dependencies') {
       steps {
-        sh 'cd jenkins-tests && npm i'
+        sh 'npm i'
       }
     }
     stage('Run tests') {
       steps {
-        sh 'cd jenkins-tests && npm t'
+        sh 'npm test'
       }
     }
   }
